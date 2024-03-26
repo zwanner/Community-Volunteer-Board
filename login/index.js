@@ -154,18 +154,41 @@ function validate_field(field) {
 
 
 let color_mode = localStorage.getItem('colorMode');
+let formheaderEl = document.querySelector('#form_header_container');
+let formbodyEl = document.querySelector('#form_container');
+let emailEl = document.querySelector('#email');
+let passwordEl = document.querySelector('#password');
+
 
 //sets background color
 function setColorMode() {
     if (color_mode === 'dark') {
         document.body.classList.remove('bg-pattern-light');
         document.body.classList.add('bg-pattern-dark');
+        formheaderEl.classList.add('login-dark-header');
+        formheaderEl.classList.remove('login-light-header');
+        formbodyEl.classList.add('login-dark-body');
+        formbodyEl.classList.remove('login-light-body');
+        emailEl.classList.add('login-dark-header');
+        emailEl.classList.remove('login-light-header');
+        passwordEl.classList.add('login-dark-header');
+        passwordEl.classList.remove('login-light-header');
     }
-    if (colorMode === 'light') {
+    if (color_mode === 'light') {
         document.body.classList.remove('bg-pattern-dark');
         document.body.classList.add('bg-pattern-light');
+        formheaderEl.classList.add('login-light-body');
+        formheaderEl.classList.remove('login-dark-body');
+        formbodyEl.classList.add('login-light-body');
+        formbodyEl.classList.remove('login-dark-body');
+        emailEl.classList.add('login-light-header');
+        emailEl.classList.remove('login-dark-header');
+        passwordEl.classList.add('login-light-header');
+        passwordEl.classList.remove('login-dark-header');
     }
 }
+
+
 
 setColorMode();
 
