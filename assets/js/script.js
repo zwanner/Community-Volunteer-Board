@@ -84,11 +84,33 @@ function setColorMode() {
 }
 
 
+function setLoginButton () {
+    if (localStorage.getItem('email') !== null) {
+        loginEl.innerHTML = "Logout";
+    } else {
+        loginEl.innerHTML = "Login";
+    }
+}
+
+function logout() {
+    localStorage.removeItem('email');
+    setLoginButton();
+}
+
+function loginHandler() {
+    if (localStorage.getItem('email') !== null) {
+        logout();
+    } else {
+        window.location.href = "./login/login.html";
+    }
+
+}
+
+
 //initializes color mode
 setColorMode();
+setLoginButton();
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
-loginEl.addEventListener("click", () => {
-    window.location.href = "./login/login.html";
-});
+loginEl.addEventListener("click", loginHandler);
