@@ -2,7 +2,7 @@ const colormodeButton = document.querySelector("#color-mode");
 const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const footerEl = document.querySelector("#footer");
-
+const loginEl = document.querySelector("#login");
 const eventFormEl = document.querySelector('#event-form');
 
 function FormSubmit(event) {
@@ -55,6 +55,9 @@ function setColorMode() {
         //change footer color to dark
         footerEl.classList.remove("bg-light", "text-dark");
         footerEl.classList.add("bg-dark", "text-light");
+        //change login color to dark
+        loginEl.classList.remove("bg-dark", "text-light");
+        loginEl.classList.add("bg-light", "text-dark");
     } else {
         //change body theme to light
         document.body.setAttribute("data-bs-theme", "light");
@@ -73,6 +76,9 @@ function setColorMode() {
         //change footer color to light
         footerEl.classList.remove("bg-dark", "text-light");
         footerEl.classList.add("bg-light", "text-dark");
+        //change login color to light
+        loginEl.classList.remove("bg-light", "text-dark");
+        loginEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -83,3 +89,6 @@ setColorMode();
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
+loginEl.addEventListener("click", () => {
+    window.location.href = "./login/login.html";
+});
