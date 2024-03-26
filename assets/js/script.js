@@ -8,8 +8,8 @@ const eventFormEl = document.querySelector('#event-form');
 function FormSubmit(event) {
     event.preventDefault();
 
-    const usernameInpEl = document.querySelector('#username');
-    const descriptionInpEl = document.querySelector('#desc');
+    const usernameInpEl = document.querySelector('#username').value;
+    const descriptionInpEl = document.querySelector('#desc').value;
     const eventPhotoEl = document.querySelector('#event-photo');
     const commentChkboxEl = document.querySelector('#comments');
     const achBdgEl = document.querySelector('#ach-bdg');
