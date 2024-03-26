@@ -3,6 +3,22 @@ const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const footerEl = document.querySelector("#footer");
 
+const eventFormEl = document.querySelector('#event-form');
+
+function FormSubmit(event) {
+    event.preventDefault();
+
+    const usernameInpEl = document.querySelector('#username');
+    const descriptionInpEl = document.querySelector('#desc');
+    const eventPhotoEl = document.querySelector('#event-photo');
+    const commentChkboxEl = document.querySelector('#comments');
+    const achBdgEl = document.querySelector('#ach-bdg');
+
+    
+}
+
+eventFormEl.addEventListener('submit', FormSubmit);
+
 
 
 //switches color mode between light and dark
