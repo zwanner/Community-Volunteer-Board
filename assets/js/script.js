@@ -83,7 +83,6 @@ function setColorMode() {
     }
 }
 
-
 function setLoginButton () {
     if (localStorage.getItem('email') !== null) {
         loginEl.innerHTML = "Logout";
