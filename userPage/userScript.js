@@ -1,13 +1,18 @@
-const colormodeButton = document.querySelector("#color-mode");
+const colormodeButton = document.querySelector("#color-mode");events
 const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
+const eventsEl = document.querySelector("#events");
 const userinfoEmailEl = document.querySelector("#userinfo-email");
 const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
 const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined");
 const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
 const eventsDiv = document.querySelector("#events-created-div");
+
+if (localStorage.getItem('email') == null) {
+    createEventButton.disabled = true;
+}
 
 
 
@@ -48,6 +53,9 @@ function setColorMode() {
         //change login color to dark
         loginEl.classList.remove("bg-dark", "text-light");
         loginEl.classList.add("bg-light", "text-dark");
+        //change events color to dark
+        eventsEl.classList.remove("bg-dark", "text-light");
+        eventsEl.classList.add("bg-light", "text-dark");
         
     } else {
         //change body theme to light
@@ -70,6 +78,9 @@ function setColorMode() {
         //change login color to light
         loginEl.classList.remove("bg-light", "text-dark");
         loginEl.classList.add("bg-dark", "text-light");
+        //change events color to light
+        eventsEl.classList.remove("bg-light", "text-dark");
+        eventsEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -248,7 +259,13 @@ function renderCards() {
     }
 }
 
+// function eventsHandler(event) {
+//     if (event.target.matches('#events')) {
+//         window.location.href = "../events/events.html";
 
+//     }
+
+// }
 
 
 //initializes color mode
@@ -261,3 +278,4 @@ renderCards();
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
 //createEventButton.addEventListener("click", createEvent());
+// eventsEl.addEventListener("click", eventsHandler());

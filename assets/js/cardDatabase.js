@@ -29,15 +29,12 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const auth = firebase.auth();
 
-
 function guidGenerator() {
     var S4 = function() {
        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
     };
     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }
-
-
 
 //stores all the cards in the database
 function storeCard(card) {
@@ -114,13 +111,18 @@ async function modalCreateCard() {
 }
 
 
+
+
 //console.log(getCards());
 loadCards();
 
 const createEventButton = document.querySelector("#create-event");
+if (localStorage.getItem('email') == null) {
+    createEventButton.disabled = true;
+}
+
 
 createEventButton.addEventListener('click', modalCreateCard);
-
 
 
 

@@ -5,6 +5,7 @@ const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
 const eventFormEl = document.querySelector('#event-form');
 const accountEl = document.querySelector('#account');
+const eventsEl = document.querySelector('#events');
 const eventContainerEl = document.querySelector('#event-container');
 
 function FormSubmit(event) {
@@ -93,6 +94,10 @@ function setColorMode() {
         //change account color to dark
         accountEl.classList.remove("bg-dark", "text-light");
         accountEl.classList.add("bg-light", "text-dark");
+        //change events color to dark
+        eventsEl.classList.remove("bg-dark", "text-light");
+        eventsEl.classList.add("bg-light", "text-dark");
+
     } else {
         //change body theme to light
         document.body.setAttribute("data-bs-theme", "light");
@@ -117,6 +122,9 @@ function setColorMode() {
         //change account color to light
         accountEl.classList.remove("bg-light", "text-dark");
         accountEl.classList.add("bg-dark", "text-light");
+        //change events color to light
+        eventsEl.classList.remove("bg-light", "text-dark");
+        eventsEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -143,11 +151,20 @@ function loginHandler() {
 
 }
 
-function accountHandler() {
-    if (localStorage.getItem('email') !== null) {
-        window.location.href = "./userPage/user.html";
-    } else {
-        window.location.href = "./login/login.html";
+function accountHandler(event) {
+    if (event.target.id === "account") {
+        if (localStorage.getItem('email') !== null) {
+            window.location.href = "./userPage/user.html";
+        } else {
+            window.location.href = "./login/login.html";
+        }
+    }
+
+}
+
+function eventsHandler(event) {
+    if (event.target.id === "events") {
+        window.location.href = "./events/events.html";
     }
 }
 
@@ -160,3 +177,4 @@ setLoginButton();
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
 accountEl.addEventListener("click", accountHandler);
+eventsEl.addEventListener("click", eventsHandler);
