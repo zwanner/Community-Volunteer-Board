@@ -98,12 +98,8 @@ function loginHandler() {
 function renderUserData () {
     let email = localStorage.getItem('email');
     let last_login = localStorage.getItem('last_login');
-    let events_joined = localStorage.getItem('events_joined');
-    let events_created = localStorage.getItem('events_created');
     userinfoEmailEl.textContent += email;
     userinfoLastLoginEl.textContent += dayjs(parseInt(last_login)).format('MM/DD/YYYY');
-    userinfoEventsJoinedEl.textContent += events_joined;
-    userinfoEventsCreatedEl.textContent += events_created;
 }
 
 function renderCards() {
@@ -123,22 +119,22 @@ function renderCards() {
                 cardDiv.appendChild(cardTitle);
 
                 let cardDate = document.createElement("p");
-                cardDate.textContent = card['date'];
+                cardDate.textContent = "Date: " + card['date'];
                 cardDate.classList.add("card-text");
                 cardDiv.appendChild(cardDate);
 
                 let cardDescription = document.createElement("p");
-                cardDescription.textContent = card['description'];
+                cardDescription.textContent = "Description: " + card['description'];
                 cardDescription.classList.add("card-text");
                 cardDiv.appendChild(cardDescription);
 
                 let cardLocation = document.createElement("p");
-                cardLocation.textContent = card['location'];
+                cardLocation.textContent = "Location: " + card['location'];
                 cardLocation.classList.add("card-text");
                 cardDiv.appendChild(cardLocation);
 
                 let cardOwner = document.createElement("p");
-                cardOwner.textContent = card['owner'];
+                cardOwner.textContent = "Owner: " + card['owner'];
                 cardOwner.classList.add("card-text");
                 cardDiv.appendChild(cardOwner);
 
