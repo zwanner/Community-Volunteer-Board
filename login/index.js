@@ -63,7 +63,9 @@ function register() {
             // Create User data
             let user_data = {
                 email: email,
-                last_login: Date.now()
+                last_login: Date.now(),
+                events_joined: 0,
+                events_created: 0
             }
 
             // Push to Firebase Database
@@ -73,6 +75,8 @@ function register() {
             alert('User Created')
             localStorage.setItem("email", email)
             localStorage.setItem("last_login", user_data.last_login)
+            localStorage.setItem("events_joined", user_data.events_joined)
+            localStorage.setItem("events_created", user_data.events_created)
             location.href = '../index.html'
         })
         .catch(function (error) {
@@ -119,9 +123,7 @@ function login() {
             let database_ref = database.ref()
 
             // Create User data
-            let user_data = {
-                last_login: Date.now()
-            }
+            user_data.last_login = Date.now()
 
             // Push to Firebase Database
             database_ref.child('users/' + user.uid).update(user_data)
@@ -130,6 +132,8 @@ function login() {
             alert('Logged in as: ' + email)
             localStorage.setItem('email', email)
             localStorage.setItem("last_login", user_data.last_login)
+            localStorage.setItem("events_joined", user_data.events_joined)
+            localStorage.setItem("events_created", user_data.events_created)
             location.href = '../index.html'
 
         })
