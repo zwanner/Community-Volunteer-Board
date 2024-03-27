@@ -120,7 +120,10 @@ function login() {
             let database_ref = database.ref()
 
             // Create User data
-            user_data.last_login = Date.now()
+            let user_data = {
+                email: email,
+                last_login: Date.now(),
+            }
 
             // Push to Firebase Database
             database_ref.child('users/' + user.uid).update(user_data)
@@ -129,8 +132,6 @@ function login() {
             alert('Logged in as: ' + email)
             localStorage.setItem('email', email)
             localStorage.setItem("last_login", user_data.last_login)
-            localStorage.setItem("events_joined", user_data.events_joined)
-            localStorage.setItem("events_created", user_data.events_created)
             location.href = '../index.html'
 
         })
@@ -138,6 +139,7 @@ function login() {
             // Firebase will use this to alert of its errors
             let error_code = error.code
             let error_message = error.message
+            console.log(user_data)
             alert(error_message)
         })
 }
