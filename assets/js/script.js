@@ -5,17 +5,48 @@ const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
 const eventFormEl = document.querySelector('#event-form');
 const accountEl = document.querySelector('#account');
+const eventContainerEl = document.querySelector('#event-container');
 
 function FormSubmit(event) {
     event.preventDefault();
-
-    const usernameInpEl = document.querySelector('#username').value;
-    const descriptionInpEl = document.querySelector('#desc').value;
+    const usernameEl = document.querySelector('#username')
+    const usernameVal = document.querySelector('#username').value;
+    if (!usernameVal) {
+        usernameEl.setAttribute('placeholder', 'Please enter your username!');
+        document.getElementById('submit').disabled = true
+    }
+    const descriptionVal = document.querySelector('#desc').value;
     const eventPhotoEl = document.querySelector('#event-photo');
     const commentChkboxEl = document.querySelector('#comments');
     const achBdgEl = document.querySelector('#ach-bdg');
 
-    
+    let cardEl = document.createElement('div');
+    let cardHeaderEl = document.createElement('div');
+    let cardBodyEl = document.createElement('div');
+    let commentEnabledEl = document.createElement('p');
+    console.log(commentEnabledEl.checked);
+    if (commentChkboxEl.checked) {
+        commentEnabledEl.textContent = "Comments enabled";
+    } else {
+        commentEnabledEl.textContent = "Comments disabled";
+    };
+let achBdgEnabledEl = document.createElement('p');
+if (achBdgEl.checked) {
+    achBdgEnabledEl.textContent = "Badges and Acheivements enabled"
+} else {
+    achBdgEnabledEl.textContent = "Badges and Acheivemnts disabled"
+}
+    let descriptionEl = document.createElement('p');
+    descriptionEl.textContent = descriptionVal;
+    let cardTitleEl = document.createElement('h3');
+    cardTitleEl.textContent = usernameVal;
+    cardHeaderEl.appendChild(cardTitleEl);
+    cardEl.appendChild(cardHeaderEl);
+    cardEl.appendChild(cardBodyEl);
+    cardBodyEl.appendChild(descriptionEl);
+    cardBodyEl.appendChild(commentEnabledEl);
+    cardBodyEl.appendChild(achBdgEnabledEl);
+    eventContainerEl.appendChild(cardEl);
 }
 
 eventFormEl.addEventListener('submit', FormSubmit);
