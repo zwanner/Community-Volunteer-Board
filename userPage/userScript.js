@@ -5,6 +5,9 @@ const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
 const userinfoEmailEl = document.querySelector("#userinfo-email");
 const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
+const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined");
+const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
+
 let now = dayjs();
 
 
@@ -95,8 +98,12 @@ function loginHandler() {
 function renderUserData () {
     let email = localStorage.getItem('email');
     let last_login = localStorage.getItem('last_login');
+    let events_joined = localStorage.getItem('events_joined');
+    let events_created = localStorage.getItem('events_created');
     userinfoEmailEl.textContent += email;
     userinfoLastLoginEl.textContent += dayjs(parseInt(last_login)).format('MM/DD/YYYY');
+    userinfoEventsJoinedEl.textContent += events_joined;
+    userinfoEventsCreatedEl.textContent += events_created;
 }
 
 
