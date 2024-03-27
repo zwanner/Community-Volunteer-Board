@@ -9,8 +9,16 @@ const eventContainerEl = document.querySelector('#event-container');
 
 function FormSubmit(event) {
     event.preventDefault();
-    const usernameEl = document.querySelector('#username')
+    const titleEl = document.querySelector('#title');
+    const titleVal = document.querySelector('#title').value;
+    const usernameEl = document.querySelector('#username');
     const usernameVal = document.querySelector('#username').value;
+
+    if (!titleVal) {
+        titleEl.setAttribute('placeholder', 'Please include a title!');
+        document.getElementById('submit').disabled = true
+    }
+
     if (!usernameVal) {
         usernameEl.setAttribute('placeholder', 'Please enter your username!');
         document.getElementById('submit').disabled = true
@@ -30,17 +38,20 @@ function FormSubmit(event) {
     } else {
         commentEnabledEl.textContent = "Comments disabled";
     };
-let achBdgEnabledEl = document.createElement('p');
-if (achBdgEl.checked) {
-    achBdgEnabledEl.textContent = "Badges and Acheivements enabled"
-} else {
-    achBdgEnabledEl.textContent = "Badges and Acheivemnts disabled"
-}
+    let achBdgEnabledEl = document.createElement('p');
+    if (achBdgEl.checked) {
+        achBdgEnabledEl.textContent = "Badges and Acheivements enabled"
+    } else {
+        achBdgEnabledEl.textContent = "Badges and Acheivemnts disabled"
+    }
     let descriptionEl = document.createElement('p');
     descriptionEl.textContent = descriptionVal;
-    let cardTitleEl = document.createElement('h3');
-    cardTitleEl.textContent = usernameVal;
+    let cardTitleEl = document.createElement('h2');
+    cardTitleEl.textContent = titleVal;
+    let cardUserEl = document.createElement('h4');
+    cardUserEl.textContent = usernameVal;
     cardHeaderEl.appendChild(cardTitleEl);
+    cardHeaderEl.appendChild(cardUserEl);
     cardEl.appendChild(cardHeaderEl);
     cardEl.appendChild(cardBodyEl);
     cardBodyEl.appendChild(descriptionEl);
@@ -121,7 +132,7 @@ function setColorMode() {
     }
 }
 
-function setLoginButton () {
+function setLoginButton() {
     if (localStorage.getItem('email') !== null) {
         loginEl.innerHTML = "Logout";
     } else {
