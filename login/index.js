@@ -1,3 +1,5 @@
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
 
@@ -20,8 +22,9 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Initialize letiables
-const auth = firebase.auth()
-const database = firebase.database()
+const auth = firebase.auth();
+const database = firebase.database();
+
 
 // Set up our register function
 function register() {
@@ -29,12 +32,25 @@ function register() {
     email = document.getElementById('email').value
     password = document.getElementById('password').value
 
-    // Validate input fields
-    if (validate_email(email) == false || validate_password(password) == false) {
-        alert('Email or Password is Outta Line!!')
+    //validate both email and passwords
+    if (validate_password(password) == false && validate_email(email) == false) {
+        alert('Invalid Email and Password')
         return
         // Don't continue running the code
     }
+    // Validate email fields
+    if (validate_email(email) == false) {
+        alert('Invalid Email')
+        return
+        // Don't continue running the code
+    }
+    //valide password
+    if (validate_password(password) == false) {
+        alert('Invalid Password')
+        return
+        // Don't continue running the code
+    }
+
     // Move on with Auth
     auth.createUserWithEmailAndPassword(email, password)
         .then(function () {
@@ -55,7 +71,8 @@ function register() {
 
             // DOne
             alert('User Created')
-            localStorage.setItem('email', email)
+            localStorage.setItem("email", email)
+            localStorage.setItem("last_login", user_data.last_login)
             location.href = '../index.html'
         })
         .catch(function (error) {
@@ -73,12 +90,19 @@ function login() {
     email = document.getElementById('email').value
     password = document.getElementById('password').value
 
-    // Validate input fields
+    //validate both email and passwords
+    if (validate_password(password) == false && validate_email(email) == false) {
+        alert('Invalid Email and Password')
+        return
+        // Don't continue running the code
+    }
+    // Validate email fields
     if (validate_email(email) == false) {
         alert('Invalid Email')
         return
         // Don't continue running the code
     }
+    //valide password
     if (validate_password(password) == false) {
         alert('Invalid Password')
         return
@@ -105,6 +129,7 @@ function login() {
             // DOne
             alert('Logged in as: ' + email)
             localStorage.setItem('email', email)
+            localStorage.setItem("last_login", user_data.last_login)
             location.href = '../index.html'
 
         })
@@ -140,32 +165,44 @@ function validate_password(password) {
     }
 }
 
-function validate_field(field) {
-    if (field == null) {
-        return false
-    }
-
-    if (field.length <= 0) {
-        return false
-    } else {
-        return true
-    }
-}
 
 
 let color_mode = localStorage.getItem('colorMode');
+let formheaderEl = document.querySelector('#form_header_container');
+let formbodyEl = document.querySelector('#form_container');
+let emailEl = document.querySelector('#email');
+let passwordEl = document.querySelector('#password');
+
 
 //sets background color
 function setColorMode() {
     if (color_mode === 'dark') {
         document.body.classList.remove('bg-pattern-light');
         document.body.classList.add('bg-pattern-dark');
+        formheaderEl.classList.add('login-dark-header');
+        formheaderEl.classList.remove('login-light-header');
+        formbodyEl.classList.add('login-dark-body');
+        formbodyEl.classList.remove('login-light-body');
+        emailEl.classList.add('login-dark-input');
+        emailEl.classList.remove('login-light-input');
+        passwordEl.classList.add('login-dark-input');
+        passwordEl.classList.remove('login-light-input');
     }
-    if (colorMode === 'light') {
+    if (color_mode === 'light') {
         document.body.classList.remove('bg-pattern-dark');
         document.body.classList.add('bg-pattern-light');
+        formheaderEl.classList.add('login-light-body');
+        formheaderEl.classList.remove('login-dark-body');
+        formbodyEl.classList.add('login-light-body');
+        formbodyEl.classList.remove('login-dark-body');
+        emailEl.classList.add('login-light-input');
+        emailEl.classList.remove('login-dark-input');
+        passwordEl.classList.add('login-light-input');
+        passwordEl.classList.remove('login-dark-input');
     }
 }
+
+
 
 setColorMode();
 

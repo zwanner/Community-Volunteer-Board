@@ -3,54 +3,9 @@ const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
-const eventFormEl = document.querySelector('#event-form');
-const accountEl = document.querySelector('#account');
-const eventContainerEl = document.querySelector('#event-container');
-
-function FormSubmit(event) {
-    event.preventDefault();
-    const usernameEl = document.querySelector('#username')
-    const usernameVal = document.querySelector('#username').value;
-    if (!usernameVal) {
-        usernameEl.setAttribute('placeholder', 'Please enter your username!');
-        document.getElementById('submit').disabled = true
-    }
-    const descriptionVal = document.querySelector('#desc').value;
-    const eventPhotoEl = document.querySelector('#event-photo');
-    const commentChkboxEl = document.querySelector('#comments');
-    const achBdgEl = document.querySelector('#ach-bdg');
-
-    let cardEl = document.createElement('div');
-    let cardHeaderEl = document.createElement('div');
-    let cardBodyEl = document.createElement('div');
-    let commentEnabledEl = document.createElement('p');
-    console.log(commentEnabledEl.checked);
-    if (commentChkboxEl.checked) {
-        commentEnabledEl.textContent = "Comments enabled";
-    } else {
-        commentEnabledEl.textContent = "Comments disabled";
-    };
-let achBdgEnabledEl = document.createElement('p');
-if (achBdgEl.checked) {
-    achBdgEnabledEl.textContent = "Badges and Acheivements enabled"
-} else {
-    achBdgEnabledEl.textContent = "Badges and Acheivemnts disabled"
-}
-    let descriptionEl = document.createElement('p');
-    descriptionEl.textContent = descriptionVal;
-    let cardTitleEl = document.createElement('h3');
-    cardTitleEl.textContent = usernameVal;
-    cardHeaderEl.appendChild(cardTitleEl);
-    cardEl.appendChild(cardHeaderEl);
-    cardEl.appendChild(cardBodyEl);
-    cardBodyEl.appendChild(descriptionEl);
-    cardBodyEl.appendChild(commentEnabledEl);
-    cardBodyEl.appendChild(achBdgEnabledEl);
-    eventContainerEl.appendChild(cardEl);
-}
-
-eventFormEl.addEventListener('submit', FormSubmit);
-
+const userinfoEmailEl = document.querySelector("#userinfo-email");
+const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
+let now = dayjs();
 
 
 //switches color mode between light and dark
@@ -90,9 +45,7 @@ function setColorMode() {
         //change login color to dark
         loginEl.classList.remove("bg-dark", "text-light");
         loginEl.classList.add("bg-light", "text-dark");
-        //change account color to dark
-        accountEl.classList.remove("bg-dark", "text-light");
-        accountEl.classList.add("bg-light", "text-dark");
+        
     } else {
         //change body theme to light
         document.body.setAttribute("data-bs-theme", "light");
@@ -114,9 +67,6 @@ function setColorMode() {
         //change login color to light
         loginEl.classList.remove("bg-light", "text-dark");
         loginEl.classList.add("bg-dark", "text-light");
-        //change account color to light
-        accountEl.classList.remove("bg-light", "text-dark");
-        accountEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -138,25 +88,23 @@ function loginHandler() {
     if (localStorage.getItem('email') !== null) {
         logout();
     } else {
-        window.location.href = "./login/login.html";
+        window.location.href = "../login/login.html";
     }
-
 }
 
-function accountHandler() {
-    if (localStorage.getItem('email') !== null) {
-        window.location.href = "./userPage/user.html";
-    } else {
-        window.location.href = "./login/login.html";
-    }
+function renderUserData () {
+    let email = localStorage.getItem('email');
+    let last_login = localStorage.getItem('last_login');
+    userinfoEmailEl.textContent += email;
+    userinfoLastLoginEl.textContent += dayjs(parseInt(last_login)).format('MM/DD/YYYY');
 }
 
 
 //initializes color mode
 setColorMode();
 setLoginButton();
+renderUserData();
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
-accountEl.addEventListener("click", accountHandler);
