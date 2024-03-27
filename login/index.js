@@ -71,7 +71,8 @@ function register() {
 
             // DOne
             alert('User Created')
-            localStorage.setItem('email', email)
+            localStorage.setItem("email", email)
+            localStorage.setItem("last_login", user_data.last_login)
             location.href = '../index.html'
         })
         .catch(function (error) {
@@ -128,6 +129,7 @@ function login() {
             // DOne
             alert('Logged in as: ' + email)
             localStorage.setItem('email', email)
+            localStorage.setItem("last_login", user_data.last_login)
             location.href = '../index.html'
 
         })
