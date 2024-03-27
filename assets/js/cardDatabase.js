@@ -16,10 +16,10 @@ const firebaseConfig = {
 
 };
 
+
 //array of cards
 let cards = [];
 //id numerator
-let count = 0;
 
 let now = dayjs(new Date());
 //localStorage.setItem('cards', cards);
@@ -29,12 +29,22 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const auth = firebase.auth();
 
+
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
+
+
 //stores all the cards in the database
 function storeCard(card) {
     let database_ref = database.ref();
-    card.id += count;
-    count++;
+    card.id += guidGenerator();
     database_ref.child('cards/' + card.id).set(card);
+    console.log("Card stored: " + JSON.stringify(card["title"]));
 }
 
 //loads all the cards from the database
@@ -47,6 +57,7 @@ function loadCards() {
             let cards = snapshot.val();
             //get all the item ids of the cards
             let itemIds = Object.keys(cards);
+            console.log(itemIds);
             for (let i = 0; i < itemIds.length; i++) {
                 let card = cards[itemIds[i]];
                 localStorage.setItem(itemIds[i], JSON.stringify(card));
@@ -57,32 +68,59 @@ function loadCards() {
     }).catch(function(error) {
         console.error(error);
     });
-
 }
 
-let testCard = {
-    title: "Test Card",
-    id: "card",
-    description: "This is a test card",
-    date: "10/10/2021",
-    location: "Test Location",
-    contact: "Test Contact",
-    owner: "Test Owner"
-};
+function createCard(title, description, date, location) {
+    let card = {
+        title: title,
+        id: "card",
+        description: description,
+        date: date,
+        location: location,
+        owner: localStorage.getItem('email')
+    };
+    return card;
+}
 
-let testCard2 = {
-    title: "Test Card 2",
-    id: "card",
-    description: "This is a test card 2",
-    date: "12/12/2021",
-    location: "Test Location 2",
-    contact: "Test Contact 2",
-    owner: "tester2@gmail.com"
-};
+async function modalCreateCard() {
+
+    const modalButtonEl = document.getElementById('modal-create-event');
+
+    // Create a promise that resolves when the modal is closed
+    const modalClosedPromise = new Promise((resolve) => {
+        modalButtonEl.addEventListener('click', () => {
+            resolve();
+        });
+    });
+
+    // Wait for the modal to be closed
+    await modalClosedPromise;
+
+    // ... rest of the code ...
+    let titleinputEl = document.getElementById('title-input');
+    let dateinputEl = document.getElementById('date-input');
+    let locationinputEl = document.getElementById('location-input');
+    let descriptioninputEl = document.getElementById('description-input');
+
+    let title = titleinputEl.value;
+    let date = dateinputEl.value;
+    let location = locationinputEl.value;
+    let description = descriptioninputEl.value;
+
+    let card = createCard(title, description, date, location);
+    storeCard(card);
+    alert("Event created: " + title + " on " + date + " at " + location + " Please Reload the page to see the event");
+}
 
 
 //console.log(getCards());
-storeCard(testCard);
-storeCard(testCard2);
 loadCards();
+
+const createEventButton = document.querySelector("#create-event");
+
+createEventButton.addEventListener('click', modalCreateCard);
+
+
+
+
 

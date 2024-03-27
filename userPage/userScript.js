@@ -9,7 +9,6 @@ const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined")
 const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
 const eventsDiv = document.querySelector("#events-created-div");
 
-let now = dayjs();
 
 
 //switches color mode between light and dark
@@ -150,6 +149,8 @@ function renderCards() {
 }
 
 
+
+
 //initializes color mode
 setColorMode();
 setLoginButton();
@@ -159,3 +160,4 @@ renderCards();
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
+//createEventButton.addEventListener("click", createEvent());
