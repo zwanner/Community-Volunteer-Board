@@ -102,6 +102,7 @@ async function modalCreateCard() {
     let locationinputEl = document.getElementById('location-input');
     let descriptioninputEl = document.getElementById('description-input');
 
+
     let title = titleinputEl.value;
     let date = dateinputEl.value;
     let location = locationinputEl.value;
