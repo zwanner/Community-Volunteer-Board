@@ -20,7 +20,9 @@ const firebaseConfig = {
 let cards = [];
 //id numerator
 let count = 0;
-localStorage.setItem('cards', cards);
+
+let now = dayjs(new Date());
+//localStorage.setItem('cards', cards);
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -58,42 +60,11 @@ function loadCards() {
 
 }
 
-//adds a card to local storage
-function addCard(card) {
-    let cards = localStorage.getItem('cards');
-    cards.push(card);
-    localStorage.setItem('cards', cards);
-}
-
-//removes a card from local storage
-function removeCard(card) {
-    let cards = localStorage.getItem('cards');
-    cards = cards.filter(c => c !== card);
-    localStorage.setItem('cards', cards);
-}
-
-
-//returns all the cards in local storage
-function getCards() {
-    return localStorage.getItem('cards');
-}
-
-//clears all the cards in local storage
-function clearCards() {
-    localStorage.setItem('cards', []);
-}
-
-//returns a card from local storage
-function getCard(card) {
-    let cards = localStorage.getItem('cards');
-    return cards.find(c => c === card);
-}
-
 let testCard = {
     title: "Test Card",
     id: "card",
     description: "This is a test card",
-    date: new Date(),
+    date: "10/10/2021",
     location: "Test Location",
     contact: "Test Contact",
     owner: "Test Owner"
@@ -103,10 +74,10 @@ let testCard2 = {
     title: "Test Card 2",
     id: "card",
     description: "This is a test card 2",
-    date: new Date(),
+    date: "12/12/2021",
     location: "Test Location 2",
     contact: "Test Contact 2",
-    owner: "Test Owner 2"
+    owner: "tester2@gmail.com"
 };
 
 

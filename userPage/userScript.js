@@ -7,6 +7,7 @@ const userinfoEmailEl = document.querySelector("#userinfo-email");
 const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
 const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined");
 const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
+const eventsDiv = document.querySelector("#events-created-div");
 
 let now = dayjs();
 
@@ -106,11 +107,54 @@ function renderUserData () {
     userinfoEventsCreatedEl.textContent += events_created;
 }
 
+function renderCards() {
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).includes('card')) {
+            let card = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            console.log(card['owner']);
+            if (card['owner'] == localStorage.getItem('email')) {
+                let card = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                console.log(card);
+                let cardDiv = document.createElement("div");
+                cardDiv.classList.add("card", "m-3", "p-3", "shadow", "card-event", "mb-4");
+
+                let cardTitle = document.createElement("h5");
+                cardTitle.textContent = card['title'];
+                cardTitle.classList.add("card-title", "border-3", "border-purple", "pb-2");
+                cardDiv.appendChild(cardTitle);
+
+                let cardDate = document.createElement("p");
+                cardDate.textContent = card['date'];
+                cardDate.classList.add("card-text");
+                cardDiv.appendChild(cardDate);
+
+                let cardDescription = document.createElement("p");
+                cardDescription.textContent = card['description'];
+                cardDescription.classList.add("card-text");
+                cardDiv.appendChild(cardDescription);
+
+                let cardLocation = document.createElement("p");
+                cardLocation.textContent = card['location'];
+                cardLocation.classList.add("card-text");
+                cardDiv.appendChild(cardLocation);
+
+                let cardOwner = document.createElement("p");
+                cardOwner.textContent = card['owner'];
+                cardOwner.classList.add("card-text");
+                cardDiv.appendChild(cardOwner);
+
+                eventsDiv.appendChild(cardDiv);
+            }
+        }
+    }
+}
+
 
 //initializes color mode
 setColorMode();
 setLoginButton();
 renderUserData();
+renderCards();
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);

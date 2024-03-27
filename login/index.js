@@ -70,6 +70,7 @@ function register() {
 
             // Push to Firebase Database
             database_ref.child('users/' + user.uid).set(user_data)
+            console.log(user_data)
 
             // DOne
             alert('User Created')
