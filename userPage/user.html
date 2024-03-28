@@ -19,10 +19,13 @@
         <div class="container-fluid pt-2 p-2 ps-3">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="navbar-brand fw-bold bg-primary rounded pe-2 ps-2 text-white" href="../index.html"> <i
+                    <a class="navbar-brand fw-bold bg-purple rounded pe-2 ps-2 text-white" href="../index.html"> <i
                             class="bi bi-clipboard-heart-fill"></i> Community Volunteer Board</a>
                 <li class="nav-item me-2">
                     <button class="btn bg-dark text-light me-2" id="login">Login</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn bg-dark text-light me-2 ms-2" id="events">Events</button>
                 </li>
             </ul>
             <button class="btn bg-dark text-light me-2" id="color-mode">
@@ -35,18 +38,68 @@
 <body data-bs-theme="dark" class="bg-pattern-light">
     <div class="container-fluid">
         <div class="row justify-content-end">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="card shadow-lg mt-3">
                     <div class="card-body">
                         <h5 class="card-title mb-3 fw-bold">User Information</h5>
                         <p class="card-text">Email: <span id="userinfo-email"></span></p>
                         <p class="card-text">Last Login: <span id="userinfo-last-login"></span></p>
-                        <p class="card-text">Events Created: <span id="userinfo-events-created"></span></p>
-                        <p class="card-text">Events Joined: <span id="userinfo-events-joined"></span></p>
                     </div>
                 </div>
             </div>
-            <div class="col-4"></div>
+            <div class="col-6">
+                <div class="card shadow-lg mt-3">
+                    <div class="card-body" id="events-created-div">
+                        <h5 class="card-title mb-3 fw-bold">Events Created</h5>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-purple" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop" id="create-event">
+                            Create Event
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Event</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group list-group-flush" id="event-list">
+                                            <li class="list-group-item">
+                                                <label class="form-label fw-bold me-2">Title: </label>
+                                                <input id="title-input" placeholder="Enter Title Here"></input>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <label class="form-label fw-bold me-2">Date: </label>
+                                                <input type="date" id="date-input"></input>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <label class="form-label fw-bold me-2">Location: </label>
+                                                <input id="location-input" placeholder="Enter Location Here"></input>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <label class="form-label fw-bold me-2">Description: </label>
+                                                <textarea id="description-input"
+                                                    placeholder="Enter Description Here"></textarea>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary btn-purple" id="modal-create-event">Create
+                                            Event</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -62,5 +115,13 @@
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script>dayjs().format()</script>
 <script src="./userScript.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="../assets/js/cardDatabase.js"></script>
 
 </html>

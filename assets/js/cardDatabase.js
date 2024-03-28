@@ -16,23 +16,32 @@ const firebaseConfig = {
 
 };
 
+
 //array of cards
 let cards = [];
 //id numerator
-let count = 0;
-localStorage.setItem('cards', cards);
+
+let now = dayjs(new Date());
+//localStorage.setItem('cards', cards);
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const auth = firebase.auth();
 
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
 //stores all the cards in the database
 function storeCard(card) {
     let database_ref = database.ref();
-    card.id += count;
-    count++;
+    card.id += guidGenerator();
     database_ref.child('cards/' + card.id).set(card);
+    console.log("Card stored: " + JSON.stringify(card["title"]));
 }
 
 //loads all the cards from the database
@@ -45,6 +54,7 @@ function loadCards() {
             let cards = snapshot.val();
             //get all the item ids of the cards
             let itemIds = Object.keys(cards);
+            console.log(itemIds);
             for (let i = 0; i < itemIds.length; i++) {
                 let card = cards[itemIds[i]];
                 localStorage.setItem(itemIds[i], JSON.stringify(card));
@@ -55,63 +65,65 @@ function loadCards() {
     }).catch(function(error) {
         console.error(error);
     });
-
 }
 
-//adds a card to local storage
-function addCard(card) {
-    let cards = localStorage.getItem('cards');
-    cards.push(card);
-    localStorage.setItem('cards', cards);
+function createCard(title, description, date, location) {
+    let card = {
+        title: title,
+        id: "card",
+        description: description,
+        date: date,
+        location: location,
+        owner: localStorage.getItem('email')
+    };
+    return card;
 }
 
-//removes a card from local storage
-function removeCard(card) {
-    let cards = localStorage.getItem('cards');
-    cards = cards.filter(c => c !== card);
-    localStorage.setItem('cards', cards);
+async function modalCreateCard() {
+
+    const modalButtonEl = document.getElementById('modal-create-event');
+
+    // Create a promise that resolves when the modal is closed
+    const modalClosedPromise = new Promise((resolve) => {
+        modalButtonEl.addEventListener('click', () => {
+            resolve();
+        });
+    });
+
+    // Wait for the modal to be closed
+    await modalClosedPromise;
+
+    // ... rest of the code ...
+    let titleinputEl = document.getElementById('title-input');
+    let dateinputEl = document.getElementById('date-input');
+    let locationinputEl = document.getElementById('location-input');
+    let descriptioninputEl = document.getElementById('description-input');
+
+
+    let title = titleinputEl.value;
+    let date = dateinputEl.value;
+    let location = locationinputEl.value;
+    let description = descriptioninputEl.value;
+
+    let card = createCard(title, description, date, location);
+    storeCard(card);
+    alert("Event created: " + title + " on " + date + " at " + location + " Please Reload the page to see the event");
 }
 
 
-//returns all the cards in local storage
-function getCards() {
-    return localStorage.getItem('cards');
-}
-
-//clears all the cards in local storage
-function clearCards() {
-    localStorage.setItem('cards', []);
-}
-
-//returns a card from local storage
-function getCard(card) {
-    let cards = localStorage.getItem('cards');
-    return cards.find(c => c === card);
-}
-
-let testCard = {
-    title: "Test Card",
-    id: "card",
-    description: "This is a test card",
-    date: new Date(),
-    location: "Test Location",
-    contact: "Test Contact",
-    owner: "Test Owner"
-};
-
-let testCard2 = {
-    title: "Test Card 2",
-    id: "card",
-    description: "This is a test card 2",
-    date: new Date(),
-    location: "Test Location 2",
-    contact: "Test Contact 2",
-    owner: "Test Owner 2"
-};
 
 
 //console.log(getCards());
-storeCard(testCard);
-storeCard(testCard2);
 loadCards();
+
+const createEventButton = document.querySelector("#create-event");
+if (localStorage.getItem('email') == null) {
+    createEventButton.disabled = true;
+}
+
+
+createEventButton.addEventListener('click', modalCreateCard);
+
+
+
 

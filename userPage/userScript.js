@@ -3,12 +3,17 @@ const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const footerEl = document.querySelector("#footer");
 const loginEl = document.querySelector("#login");
+const eventsEl = document.querySelector("#events");
 const userinfoEmailEl = document.querySelector("#userinfo-email");
 const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
 const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined");
 const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
+const eventsDiv = document.querySelector("#events-created-div");
 
-let now = dayjs();
+if (localStorage.getItem('email') == null) {
+    createEventButton.disabled = true;
+}
+
 
 
 //switches color mode between light and dark
@@ -48,6 +53,9 @@ function setColorMode() {
         //change login color to dark
         loginEl.classList.remove("bg-dark", "text-light");
         loginEl.classList.add("bg-light", "text-dark");
+        //change events color to dark
+        eventsEl.classList.remove("bg-dark", "text-light");
+        eventsEl.classList.add("bg-light", "text-dark");
         
     } else {
         //change body theme to light
@@ -70,6 +78,9 @@ function setColorMode() {
         //change login color to light
         loginEl.classList.remove("bg-light", "text-dark");
         loginEl.classList.add("bg-dark", "text-light");
+        //change events color to light
+        eventsEl.classList.remove("bg-light", "text-dark");
+        eventsEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -98,12 +109,160 @@ function loginHandler() {
 function renderUserData () {
     let email = localStorage.getItem('email');
     let last_login = localStorage.getItem('last_login');
-    let events_joined = localStorage.getItem('events_joined');
-    let events_created = localStorage.getItem('events_created');
     userinfoEmailEl.textContent += email;
     userinfoLastLoginEl.textContent += dayjs(parseInt(last_login)).format('MM/DD/YYYY');
-    userinfoEventsJoinedEl.textContent += events_joined;
-    userinfoEventsCreatedEl.textContent += events_created;
+}
+
+function renderCards() {
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).includes('card')) {
+            let card = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            console.log(card['owner']);
+            if (card['owner'] == localStorage.getItem('email')) {
+                let card = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                console.log(card);
+                let cardDiv = document.createElement("div");
+                cardDiv.classList.add("card", "m-3", "p-3", "shadow", "card-event", "mb-4");
+
+                let cardTitle = document.createElement("h5");
+                cardTitle.textContent = card['title'] + " ";
+                cardTitle.classList.add("card-title", "border-3", "border-purple", "pb-2");
+
+
+                let cardDate = document.createElement("p");
+                cardDate.textContent = "Date: " + card['date'];
+                cardDate.classList.add("card-text");
+
+
+                let cardDescription = document.createElement("p");
+                cardDescription.textContent = "Description: " + card['description'];
+                cardDescription.classList.add("card-text");
+                if (cardDescription.textContent.includes("elderly") || cardDescription.textContent.includes("Elderly")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-person-wheelchair", "bg-primary", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Elderly");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("children") || cardDescription.textContent.includes("Children")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-emoji-smile", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Children");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("food") || cardDescription.textContent.includes("Food")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-basket2-fill", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Food");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("shelter") || cardDescription.textContent.includes("Shelter")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-house-fill", "bg-danger", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Shelter");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("medical") || cardDescription.textContent.includes("Medical")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-heart-fill", "bg-danger", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Medical");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("volunteer") || cardDescription.textContent.includes("Volunteer")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-people-fill", "bg-secondary", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Volunteer");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("donation") || cardDescription.textContent.includes("Donation")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-currency-dollar", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Donation");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("fundraiser") || cardDescription.textContent.includes("Fundraiser")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-cash-stack", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Fundraiser");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("event") || cardDescription.textContent.includes("Event")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-calendar-event", "bg-info", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Event");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("animal") || cardDescription.textContent.includes("Animal")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-emoji-heart-eyes", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Animal");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("environment") || cardDescription.textContent.includes("Environment")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-tree", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Environment");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("education") || cardDescription.textContent.includes("Education")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-book", "bg-info", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Education");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("health") || cardDescription.textContent.includes("Health")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-heart-half", "bg-danger", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Health");
+                    cardTitle.appendChild(tag);
+                }
+                if (cardDescription.textContent.includes("sports") || cardDescription.textContent.includes("Sports") || cardDescription.textContent.includes("games") || cardDescription.textContent.includes("Games")) {
+                    let tag = document.createElement("i");
+                    tag.classList.add("bi", "bi-dribble", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.setAttribute("data-toggle", "tooltip");
+                    tag.setAttribute("title", "Sports/Games");
+                    cardTitle.appendChild(tag);
+                }
+
+
+                let cardLocation = document.createElement("p");
+                cardLocation.textContent = "Location: " + card['location'];
+                cardLocation.classList.add("card-text");
+
+
+                let cardOwner = document.createElement("p");
+                cardOwner.textContent = "Owner: " + card['owner'];
+                cardOwner.classList.add("card-text");
+
+
+                cardDiv.appendChild(cardTitle);
+                cardDiv.appendChild(cardDate);
+                cardDiv.appendChild(cardDescription);
+                cardDiv.appendChild(cardLocation);
+                cardDiv.appendChild(cardOwner);
+
+                eventsDiv.appendChild(cardDiv);
+            }
+        }
+    }
+}
+
+function eventsHandler(event) {
+    if (event.target.id === "events") {
+        window.location.href = "../events/events.html";
+    }
 }
 
 
@@ -111,7 +270,10 @@ function renderUserData () {
 setColorMode();
 setLoginButton();
 renderUserData();
+renderCards();
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
+//createEventButton.addEventListener("click", createEvent());
+eventsEl.addEventListener("click", eventsHandler);

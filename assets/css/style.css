@@ -25,3 +25,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     transition: 0.3s ease-in-out;
     transform: scale(1.05);
 }
+
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+
