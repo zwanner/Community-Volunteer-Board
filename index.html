@@ -7,12 +7,13 @@
   <title>Community Volunteer Board</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="icon" href="./assets/images/clipboard-heart-fill.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  
 </head>
 <header class="mb-3">
   <nav class="navbar shadow bg-light" id="navbar">
@@ -20,7 +21,7 @@
       <ul class="nav">
         <li class="nav-item">
           <a class="navbar-brand fw-bold bg-primary rounded pe-2 ps-2 text-white" href="index.html"> <i
-            class="bi bi-clipboard-heart-fill"></i> Community Volunteer Board</a>
+              class="bi bi-clipboard-heart-fill"></i> Community Volunteer Board</a>
         <li class="nav-item me-2">
           <button class="btn bg-dark text-light me-2" id="login">Login</button>
         </li>
@@ -43,23 +44,23 @@
         <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be
           careful what you share.</p>
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="sm:col-span-4">
-                          <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                          <div class="mt-2">
-                              <div
-                                  class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                  <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-                                  <input type="text" name="title" id="title" 
-                                      class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                      placeholder="title of event">
-                              </div>
-                          </div>
-                      </div>
-                  </div>    
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-4">
+            <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+            <div class="mt-2">
+              <div
+                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
+                <input type="text" name="title" id="title"
+                  class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  placeholder="title of event">
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-4">
             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
             <div class="mt-2">
               <div
@@ -100,6 +101,22 @@
                 <p class="pl-1">or drag and drop</p>
               </div>
               <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+              <div>
+                <ul id="pick-a-bg">
+                  <li class="ui-state-default">1</li>
+                  <li class="ui-state-default">2</li>
+                  <li class="ui-state-default">3</li>
+                  <li class="ui-state-default">4</li>
+                  <li class="ui-state-default">5</li>
+                  <li class="ui-state-default">6</li>
+                  <li class="ui-state-default">7</li>
+                  <li class="ui-state-default">8</li>
+                  <li class="ui-state-default">9</li>
+                  <li class="ui-state-default">10</li>
+                  <li class="ui-state-default">11</li>
+                  <li class="ui-state-default">12</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -7,7 +7,8 @@ const eventFormEl = document.querySelector('#event-form');
 const accountEl = document.querySelector('#account');
 const eventContainerEl = document.querySelector('#event-container');
 
-function FormSubmit(event) {
+
+function formSubmit(event) {
     event.preventDefault();
     const titleEl = document.querySelector('#title');
     const titleVal = document.querySelector('#title').value;
@@ -60,7 +61,7 @@ function FormSubmit(event) {
     eventContainerEl.appendChild(cardEl);
 }
 
-eventFormEl.addEventListener('submit', FormSubmit);
+eventFormEl.addEventListener('submit', formSubmit);
 
 
 
