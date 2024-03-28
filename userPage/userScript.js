@@ -56,7 +56,7 @@ function setColorMode() {
         //change events color to dark
         eventsEl.classList.remove("bg-dark", "text-light");
         eventsEl.classList.add("bg-light", "text-dark");
-        
+
     } else {
         //change body theme to light
         document.body.setAttribute("data-bs-theme", "light");
@@ -85,7 +85,7 @@ function setColorMode() {
     }
 }
 
-function setLoginButton () {
+function setLoginButton() {
     if (localStorage.getItem('email') !== null) {
         loginEl.innerHTML = "Logout";
     } else {
@@ -106,7 +106,7 @@ function loginHandler() {
     }
 }
 
-function renderUserData () {
+function renderUserData() {
     let email = localStorage.getItem('email');
     let last_login = localStorage.getItem('last_login');
     userinfoEmailEl.textContent += email;
@@ -186,7 +186,7 @@ function renderCards() {
                     tag.setAttribute("title", "Donation");
                     cardTitle.appendChild(tag);
                 }
-                if (cardDescription.textContent.includes("fundraiser") || cardDescription.textContent.includes("Fundraiser") || cardDescription.textContent.includes("fundraising") || cardDescription.textContent.includes("Fundraising")){
+                if (cardDescription.textContent.includes("fundraiser") || cardDescription.textContent.includes("Fundraiser") || cardDescription.textContent.includes("fundraising") || cardDescription.textContent.includes("Fundraising")) {
                     let tag = document.createElement("i");
                     tag.classList.add("bi", "bi-cash-stack", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                     tag.setAttribute("data-toggle", "tooltip");
@@ -207,7 +207,7 @@ function renderCards() {
                     tag.setAttribute("title", "Animal");
                     cardTitle.appendChild(tag);
                 }
-                if (cardDescription.textContent.includes("environment") || cardDescription.textContent.includes("Environment") || cardDescription.textContent.includes("sustainability") || cardDescription.textContent.includes("Sustainability") || cardDescription.textContent.includes("climate") || cardDescription.textContent.includes("Climate") || cardDescription.textContent.includes("earth") || cardDescription.textContent.includes("Earth") || cardDescription.textContent.includes("garden") || cardDescription.textContent.includes("Garden")){
+                if (cardDescription.textContent.includes("environment") || cardDescription.textContent.includes("Environment") || cardDescription.textContent.includes("sustainability") || cardDescription.textContent.includes("Sustainability") || cardDescription.textContent.includes("climate") || cardDescription.textContent.includes("Climate") || cardDescription.textContent.includes("earth") || cardDescription.textContent.includes("Earth") || cardDescription.textContent.includes("garden") || cardDescription.textContent.includes("Garden")) {
                     let tag = document.createElement("i");
                     tag.classList.add("bi", "bi-tree", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                     tag.setAttribute("data-toggle", "tooltip");
