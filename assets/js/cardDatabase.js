@@ -44,6 +44,23 @@ function storeCard(card) {
     console.log("Card stored: " + JSON.stringify(card["title"]));
 }
 
+//deletes a card from the database
+function deleteCard(cardId) {
+    if (cardId) {
+        let database_ref = database.ref();
+        database_ref.child('cards/' + cardId).remove()
+            .then(() => {
+                console.log("Card deleted: " + cardId);
+            })
+            .catch((error) => {
+                console.error("Error deleting card: " + error);
+            });
+    } else {
+        console.error("Invalid card ID");
+    }
+}
+
+
 //loads all the cards from the database
 function loadCards() {
     let database_ref = database.ref();

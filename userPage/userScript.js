@@ -6,8 +6,6 @@ const loginEl = document.querySelector("#login");
 const eventsEl = document.querySelector("#events");
 const userinfoEmailEl = document.querySelector("#userinfo-email");
 const userinfoLastLoginEl = document.querySelector("#userinfo-last-login");
-const userinfoEventsJoinedEl = document.querySelector("#userinfo-events-joined");
-const userinfoEventsCreatedEl = document.querySelector("#userinfo-events-created");
 const eventsDiv = document.querySelector("#events-created-div");
 
 if (localStorage.getItem('email') == null) {
@@ -128,7 +126,6 @@ function renderCards() {
                 cardTitle.textContent = card['title'] + " ";
                 cardTitle.classList.add("card-title", "border-3", "border-purple", "pb-2");
 
-
                 let cardDate = document.createElement("p");
                 cardDate.textContent = "Date: " + card['date'];
                 cardDate.classList.add("card-text");
@@ -236,6 +233,11 @@ function renderCards() {
                     cardTitle.appendChild(tag);
                 }
 
+                let buttonDelete = document.createElement("button");
+                buttonDelete.textContent = "Delete";
+                buttonDelete.classList.add("btn", "btn-danger", "float-end");
+                buttonDelete.id = localStorage.key(i);
+                cardTitle.appendChild(buttonDelete);
 
                 let cardLocation = document.createElement("p");
                 cardLocation.textContent = "Location: " + card['location'];
@@ -265,6 +267,15 @@ function eventsHandler(event) {
     }
 }
 
+function deleteCardEvent(event) {
+    let cardId = event.target.id;
+    if (confirm("Are you sure you want to delete this event?")) {
+        localStorage.removeItem(cardId);
+        deleteCard(cardId);
+        location.reload();
+    }
+}
+
 
 //initializes color mode
 setColorMode();
@@ -277,3 +288,8 @@ colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
 //createEventButton.addEventListener("click", createEvent());
 eventsEl.addEventListener("click", eventsHandler);
+
+let deleteButtons = document.querySelectorAll(".btn-danger");
+deleteButtons.forEach(button => {
+    button.addEventListener("click", deleteCardEvent);
+});
