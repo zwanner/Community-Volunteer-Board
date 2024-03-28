@@ -23,4 +23,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .btn-purple {
     background-color: #6f42c1;
     border-color: #6f42c1;
-}   
+} 
+.btn-purple:hover {
+    background-color: #CA3CFF;
+    border-color: #CA3CFF;
+}

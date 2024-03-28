@@ -54,8 +54,8 @@ function setColorMode() {
         loginEl.classList.remove("bg-dark", "text-light");
         loginEl.classList.add("bg-light", "text-dark");
         //change events color to dark
-        // eventsEl.classList.remove("bg-dark", "text-light");
-        // eventsEl.classList.add("bg-light", "text-dark");
+        eventsEl.classList.remove("bg-dark", "text-light");
+        eventsEl.classList.add("bg-light", "text-dark");
         
     } else {
         //change body theme to light
@@ -79,8 +79,8 @@ function setColorMode() {
         loginEl.classList.remove("bg-light", "text-dark");
         loginEl.classList.add("bg-dark", "text-light");
         //change events color to light
-        // eventsEl.classList.remove("bg-light", "text-dark");
-        // eventsEl.classList.add("bg-dark", "text-light");
+        eventsEl.classList.remove("bg-light", "text-dark");
+        eventsEl.classList.add("bg-dark", "text-light");
 
     }
 }
@@ -259,11 +259,11 @@ function renderCards() {
     }
 }
 
-// function eventsHandler(event) {
-//     if (event.target.id === "events") {
-//         window.location.href = "./events/events.html";
-//     }
-// }
+function eventsHandler(event) {
+    if (event.target.id === "events") {
+        window.location.href = "../events/events.html";
+    }
+}
 
 
 //initializes color mode
@@ -276,4 +276,4 @@ renderCards();
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
 //createEventButton.addEventListener("click", createEvent());
-// eventsEl.addEventListener("click", eventsHandler());
+eventsEl.addEventListener("click", eventsHandler);
