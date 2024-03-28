@@ -122,7 +122,7 @@ function renderCards() {
                 let card = JSON.parse(localStorage.getItem(localStorage.key(i)));
                 console.log(card);
                 let cardDiv = document.createElement("div");
-                cardDiv.classList.add("card", "m-3", "p-3", "shadow", "card-event", "mb-4");
+                cardDiv.classList.add("card", "m-3", "p-3", "card-event", "mb-4");
 
                 let cardTitle = document.createElement("h5");
                 cardTitle.textContent = card['title'] + " ";

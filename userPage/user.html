@@ -16,10 +16,10 @@
 </head>
 <header class="mb-3">
     <nav class="navbar shadow bg-light" id="navbar">
-        <div class="container-fluid pt-2 p-2 ps-3">
+        <div class="container-fluid p-2">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="navbar-brand fw-bold bg-purple rounded pe-2 ps-2 text-white" href="../index.html"> <i
+                    <a class="navbar-brand fw-bold bg-purple rounded pe-2 ps-2 ms-2 text-white" href="../index.html"> <i
                             class="bi bi-clipboard-heart-fill"></i> Community Volunteer Board</a>
                 </li>
                 <li class="nav-item">
@@ -35,7 +35,7 @@
                 <li class="nav-item me-2">
                     <button class="btn bg-dark text-light me-2" id="login">Login</button>
                 </li>
-            </ul>  
+            </ul>
         </div>
     </nav>
 </header>
@@ -43,24 +43,27 @@
 <body data-bs-theme="dark" class="bg-pattern-light">
     <div class="container-fluid">
         <div class="row justify-content-end">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card shadow-lg mt-3">
                     <div class="card-body">
-                        <h5 class="card-title mb-3 fw-bold">User Information</h5>
+                        <h3 class="card-title mb-3 fw-bold">User Information</h3>
                         <p class="card-text">Email: <span id="userinfo-email"></span></p>
                         <p class="card-text">Last Login: <span id="userinfo-last-login"></span></p>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card shadow-lg mt-3">
                     <div class="card-body" id="events-created-div">
-                        <h5 class="card-title mb-3 fw-bold">Events Created</h5>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-purple" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop" id="create-event">
-                            Create Event
-                        </button>
+                        <div class="nav">
+                            <h3 class="card-title fw-bold">Your Events</h3>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-purple ms-3 mb-3" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop" id="create-event">
+                                Create Event
+                            </button>
+                        </div>
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -96,7 +99,8 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary btn-purple" id="modal-create-event">Create
+                                        <button type="button" class="btn btn-primary btn-purple"
+                                            id="modal-create-event">Create
                                             Event</button>
                                     </div>
                                 </div>
