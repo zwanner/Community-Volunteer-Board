@@ -60,7 +60,6 @@ function deleteCard(cardId) {
     }
 }
 
-
 //loads all the cards from the database
 function loadCards() {
     let database_ref = database.ref();
