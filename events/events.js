@@ -6,9 +6,7 @@ const loginEl = document.querySelector("#login");
 const accountEl = document.querySelector('#account');
 const eventsDiv = document.querySelector("#event-div");
 
-if (localStorage.getItem('email') == null) {
-    createEventButton.disabled = true;
-}
+
 
 
 //switches color mode between light and dark
@@ -96,7 +94,7 @@ function loginHandler() {
     if (localStorage.getItem('email') !== null) {
         logout();
     } else {
-        window.location.href = "./login/login.html";
+        window.location.href = "../login/login.html";
     }
 
 }
