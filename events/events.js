@@ -221,7 +221,7 @@ function renderCards() {
             }
             if (cardDescription.textContent.includes("sports") || cardDescription.textContent.includes("Sports") || cardDescription.textContent.includes("games") || cardDescription.textContent.includes("Games")) {
                 let tag = document.createElement("i");
-                tag.classList.add("bi", "bi-dribble", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                tag.classList.add("bi", "bi-dribbble", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                 tag.setAttribute("data-toggle", "tooltip");
                 tag.setAttribute("title", "Sports/Games");
                 cardTitle.appendChild(tag);

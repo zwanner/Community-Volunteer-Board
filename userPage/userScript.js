@@ -186,7 +186,7 @@ function renderCards() {
                     tag.setAttribute("title", "Donation");
                     cardTitle.appendChild(tag);
                 }
-                if (cardDescription.textContent.includes("fundraiser") || cardDescription.textContent.includes("Fundraiser")) {
+                if (cardDescription.textContent.includes("fundraiser") || cardDescription.textContent.includes("Fundraiser") || cardDescription.textContent.includes("fundraising") || cardDescription.textContent.includes("Fundraising")){
                     let tag = document.createElement("i");
                     tag.classList.add("bi", "bi-cash-stack", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                     tag.setAttribute("data-toggle", "tooltip");
@@ -207,7 +207,7 @@ function renderCards() {
                     tag.setAttribute("title", "Animal");
                     cardTitle.appendChild(tag);
                 }
-                if (cardDescription.textContent.includes("environment") || cardDescription.textContent.includes("Environment")) {
+                if (cardDescription.textContent.includes("environment") || cardDescription.textContent.includes("Environment") || cardDescription.textContent.includes("sustainability") || cardDescription.textContent.includes("Sustainability") || cardDescription.textContent.includes("climate") || cardDescription.textContent.includes("Climate") || cardDescription.textContent.includes("earth") || cardDescription.textContent.includes("Earth") || cardDescription.textContent.includes("garden") || cardDescription.textContent.includes("Garden")){
                     let tag = document.createElement("i");
                     tag.classList.add("bi", "bi-tree", "bg-success", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                     tag.setAttribute("data-toggle", "tooltip");
@@ -230,7 +230,7 @@ function renderCards() {
                 }
                 if (cardDescription.textContent.includes("sports") || cardDescription.textContent.includes("Sports") || cardDescription.textContent.includes("games") || cardDescription.textContent.includes("Games")) {
                     let tag = document.createElement("i");
-                    tag.classList.add("bi", "bi-dribble", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
+                    tag.classList.add("bi", "bi-dribbble", "bg-warning", "pe-1", "ps-1", "rounded", "text-white", "me-1");
                     tag.setAttribute("data-toggle", "tooltip");
                     tag.setAttribute("title", "Sports/Games");
                     cardTitle.appendChild(tag);
