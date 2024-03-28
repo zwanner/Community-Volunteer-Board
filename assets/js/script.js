@@ -64,13 +64,13 @@ function formSubmit(event) {
 }
 
 
-formSubmitEl.addEventListener('submit', formSubmit)
+//formSubmitEl.addEventListener('submit', formSubmit)
 
-function photoUpload(event) {
+// function photoUpload(event) {
 
-}
-console.log(uploadEl)
-uploadEl.addEventListener('submit', photoUpload);
+// }
+// console.log(uploadEl)
+// uploadEl.addEventListener('submit', photoUpload);
 
 //switches color mode between light and dark
 function switchColorMode() {
