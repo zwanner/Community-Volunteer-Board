@@ -77,6 +77,22 @@ body {
     text-align: center;
 }
 
+h3 {
+    text-align: left;
+    margin-top: 20px;
+    margin-right: 350px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 15%;
+    text-indent: 5%;
+}
+
+h3:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.01);
+}
+
 .article-p:hover {
     transition: 0.3s ease-in-out;
     transform: scale(1.01);

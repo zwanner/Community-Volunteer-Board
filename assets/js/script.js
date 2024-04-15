@@ -8,6 +8,7 @@ const eventsEl = document.querySelector('#events');
 const eventContainerEl = document.querySelector('#event-container');
 const formSubmitEl = document.getElementById('event-form')
 const uploadEl = document.querySelector('#photo-upload')
+const signupEl = document.querySelector('#join-now')
 
 console.log(uploadEl,"from line12")
 function formSubmit(event) {
@@ -192,6 +193,7 @@ setColorMode();
 setLoginButton();
 
 //event listeners
+signupEl.addEventListener("click", loginHandler)
 colormodeButton.addEventListener("click", switchColorMode);
 loginEl.addEventListener("click", loginHandler);
 accountEl.addEventListener("click", accountHandler);
